@@ -10928,3 +10928,28 @@ a.text-dark:focus {
   }
 }
 
+.counter {
+  margin-right: 30px !important;
+  font-size: 10px;
+  text-align: center;
+}
+
+strong {
+  display: block;
+  font-size: 2rem;
+}
+
+.status.unanswerd {
+  border: none;
+}
+
+.status.answered {
+  border: 1px solid #adecb0;
+  color: #adecb0;
+}
+
+.status.answer-accepted {
+  background: #adecb0;
+  color: #fff;
+}
+
