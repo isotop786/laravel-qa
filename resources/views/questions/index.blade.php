@@ -5,8 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center orange">All Questions</div>
-
+                <div class="card-header">
+                <div class="d-flex align-items-center">
+                <h2>All Questions</h2>
+                <div class="ml-auto">
+                <a href="{{route('questions.create')}}" class="btn btn-outline-secondary">Ask Question</a>
+            </div>
+            </div>
+            </div>
+           
                 <div class="card-body">
                     @foreach($questions->all() as $q)
                    <div class="media">
