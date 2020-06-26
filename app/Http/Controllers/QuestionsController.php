@@ -1,12 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+ 
 
 use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionReqest;
+use App\User;
+
 
 class QuestionsController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //      $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +38,12 @@ class QuestionsController extends Controller
      */
     public function create()
     {
+       
         $question = new Question();
 
         return view('questions.create',compact('question'));
+
+       
     }
 
     /**
@@ -39,12 +52,11 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionReqest $request)
     {
-        $this->validate($request,[
-            'title'=>'required',
-            'body'=>'required'
-        ]);
+        $request->user()->questions()->create($request->only('title','body'));
+
+        return redirect()->route('questions.index')->with('success','Your Question has successfully submitted');
     }
 
     /**
