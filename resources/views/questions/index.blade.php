@@ -34,8 +34,13 @@
                                <div>
                        <a class="" href="/questions/{{$q->id}}">  <h3 class="mt-0">{{$q->title}}</h3></a></div>
                        <div class="ml-auto">
-                           <a href="{{ route('questions.edit',$q->id)}}" class="btn btn-sm btn-outline-info shadow-sm">Edit</a>
-                       </div>
+                           <a href="{{ route('questions.edit',$q->id)}}" class=" btn btn-sm btn-outline-info shadow-sm">Edit</a>
+                        <form action="{{route('questions.destroy',$q->id)}}" method="POST">
+                            {{method_field("DELETE")}}
+                            @csrf
+                            <input type="submit" value="Delete" class="btn btn-sm btn-outline-danger shadow-sm mt-2" onclick="return confirm('Are you sure?'); ">
+                        </form>
+                        </div>
                     </div>
                        <p class="text-lead">Asked by<a class="text-success" href="{{$q->user->url}}"> {{$q->user->name}}</a>
                         <small class="text-light badge badge-danger">{{$q->created_date}}</small>
