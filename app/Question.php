@@ -16,12 +16,13 @@ class Question extends Model
     public function setTitleAttribute($value)
     {
         $this->attributes['title']=$value;
+        // to converting to slug type in database
         $this->attributes['slug']=str_slug($value);
     }
     
     public function getUrlAttribute()
     {
-        return route("questions.show",$this->id);
+        return route("questions.show",$this->slug);
     }
 
     public function getCreatedDateAttribute()
@@ -44,6 +45,12 @@ class Question extends Model
         }
 
         return "unanswerd";
+    }
+
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 
 }
