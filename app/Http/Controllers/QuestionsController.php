@@ -12,10 +12,10 @@ use App\User;
 class QuestionsController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //      $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+         $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -79,7 +79,12 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
+        if(\Gate::allows('update-question',$question))
+        {
         return view('questions.edit',compact('question'));
+        }
+        
+        abort(403,"Access denied".'<a href="/questions">Go Back</a>');
     }
 
     /**
@@ -104,8 +109,14 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+
+        if(\Gate::denies('delete-question',$question)){
+            abort(403,'Access Denied');
+        }else{
+
         $question->delete();
 
         return redirect()->route('questions.index')->with('success','Your Question has deleted');
+        }
     }
 }
