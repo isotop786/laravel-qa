@@ -25,9 +25,9 @@
                              <strong>  {{$q->vote}}</strong> {{str_plural('vote'),$q->vote}}
                            </div>
                            <div class="status mb-2 p-1 {{$q->status}}">
-                              <strong> {{$q->answer}}</strong> {{str_plural('answer'),$q->answer}}
+                              <strong> {{$q->answers_count}}</strong> {{str_plural('answer'),$q->answers_count}}
                            </div>
-                           <div class="view  badge badge-warning ">
+                           <div class="view  badge badge-warning ">s
                                {{$q->view}} {{str_plural('view'),$q->view}}
                            </div>
                        </div>

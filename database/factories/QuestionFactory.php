@@ -10,7 +10,7 @@ $factory->define(App\Question::class, function (Faker $faker) {
             'title'=> rtrim($faker->sentence(rand(5,10)),'.'),
             'body'=>$faker->paragraphs(rand(3,7),true),
             'view'=>rand(0,10),
-            'answer'=>rand(0,10),
+            'answer_count'=>rand(0,10),
             'vote'=>rand(-3,10)
     ];
 });

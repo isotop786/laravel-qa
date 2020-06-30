@@ -36,11 +36,15 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Question $question )
     {
        
-        $question = new Question();
 
+        
+        // if(\Gate::denies('ask-question',$question)){
+        //     abort(403,'Please login or Register your account to ask a question');
+        // }
+       
         return view('questions.create',compact('question'));
 
        
