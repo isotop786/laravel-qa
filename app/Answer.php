@@ -13,7 +13,7 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -38,6 +38,11 @@ class Answer extends Model
        static::saved(function($answer){
             // echo "Answer Saved";
        });
+    }
+
+    public  function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 
 }
