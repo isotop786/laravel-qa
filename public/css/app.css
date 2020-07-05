@@ -10953,3 +10953,9 @@ strong {
   color: #fff;
 }
 
+a {
+  cursor: pointer;
+  -moz-columns: #adb5bd;
+       columns: #adb5bd;
+}
+

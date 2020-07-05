@@ -29,11 +29,11 @@
 
 <div class="form-group">
     <label for="title">Title of the Question</label>
-<input class="form-control {{ $errors->has('title') ? 'is-invalid' : ' ' }}" type="text" name="title" id="title" value="{{old('title',$question->title)}}">
+    <input class="form-control {{ $errors->has('title') ? 'is-invalid' : ' ' }}" type="text" name="title" id="title" value="{{old('title',$question->title)}}">
     @if($errors->has('title'))
-<div class="invalid-feedback">
+    <div class="invalid-feedback">
     <strong> {{ $errors->first('title')}}</strong>
-</div>
+    </div>
     @endif
 </div>
 

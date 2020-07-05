@@ -1,34 +1,42 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-.counter{
-    margin-right: 30px!important;
+@import "~bootstrap/scss/bootstrap";
+.counter {
+    margin-right: 30px !important;
     font-size: 10px;
     text-align: center;
 }
 
-strong{
+strong {
     display: block;
     font-size: 2rem;
 }
 
-.status{
-    &.unanswerd{
+.status {
+    &.unanswerd {
         border: none;
     }
 
-    &.answered{
+    &.answered {
         border: 1px solid $color-green;
-        color:$color-green;
+        color: $color-green;
     }
 
-    &.answer-accepted{
+    &.answer-accepted {
         background: $color-green;
         color: $color-white;
     }
+}
+
+.vote-controls {
+}
+
+a {
+    cursor: pointer;
+    columns: $gray-500;
 }

@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
+@include('layouts.__messages')
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+
+                <div class="card-body">
+                <div class="card-title">
                 <div class="d-flex align-items-center">
                 <h2>{{$question->title}}</h2>
                 <div class="ml-auto">
@@ -13,12 +16,23 @@
             </div>
             </div>
             </div>
-                <div class="card-body">
-                    
+            <hr>
+            <div class="media d-flex">
+
+                 <div class="d-flex flex-column vote-ctrl mr-3 align-items-center">
+
+                     <a title="Useful question" class="vote-up" href=""><i class="fas fa-caret-up fa-3x text-dark"></i></a>       
+                     <span class="vote-count">{{ $question->vote}}</span>       
+                     <a title="Unnessary question" class="vote-down" href=""><i class="fas fa-caret-down fa-3x text-secondary"></i></a>       
+                     <a title="Make as favorite" class="favorite mt-3" href=""><i class="fas fa-star fa-2x text-warning "></i></a>       
+
+                    </div>
+
+                <div class="media-body  ml-auto">
                 {!! $question->body_html !!}
                
                 <div class="float-right">
-                        <span class="text-muted">Asked at {{ $question->created_date }}</span>
+                        <span class="text-muted">Asked since {{ $question->created_date }}</span>
                         <div class="media mt-2 ">
                         <a class="pr-2" href="{{ $question->user->url}}">
                         <img src="{{ $question->user->avatar }}" alt="">
@@ -29,46 +43,25 @@
                         </div>
                         </div>
                 
-            </div>
+                </div>
+                    </div>
+            
+                </div>
             </div>
         </div>
     </div>
 
 {{-- Answers --}}
 
-<div class="row mt-4 ">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-            <div class="card-title h3 font-weight-bold">{{ $question->answers_count }} {{ str_plural('Answer',$question->answers_count) }}</div>
-                <hr>
-                @foreach($question->answers as $answer)
-                   
-                <div class="media mt-2">
-                    <div class="media-body muted">
-                        {!! $answer->body_html !!}
-                        <div class="float-right">
-                        <span class="text-muted">Answered {{ $answer->created_date }}</span>
-                        <div class="media x">
-                        <a class="pr-2" href="{{ $answer->user->url}}">
-                        <img src="{{ $answer->user->avatar }}" alt="">
-                        </a>
-                        <div class="media-body p-1 ml-auto">
-                        <a href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
-                        </div>
-                        </div>
-                        </div>
-                   
-                    </div>
-                </div>
+@include('answers._index',[
+    'answers'=>$question->answers,
+    'answer_count' => $question->answer_count
+])
 
- <hr>
-                @endforeach
-                
-        </div>
-        </div>
-    </div>
-</div>
+{{-- User's answers filed --}}
+
+@include('answers._create')
+
 
 </div>
 
