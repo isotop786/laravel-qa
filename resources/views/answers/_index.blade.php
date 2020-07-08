@@ -20,15 +20,30 @@
                     <div class="media-body muted pb-2">
                         {!! $answer->body_html !!}
                         <div class="float-right">
-                        <span class="text-muted">Answered {{ $answer->created_date }}</span>
-                        <div class="media x">
-                        <a class="pr-2" href="{{ $answer->user->url}}">
-                        <img src="{{ $answer->user->avatar }}" alt="">
-                        </a>
-                        <div class="media-body p-1 ml-auto">
-                        <a href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
+                            <span class="text-muted">Answered {{ $answer->created_date }}</span>
+                            <div class="media x">
+                            <a class="pr-2" href="{{ $answer->user->url}}">
+                            <img src="{{ $answer->user->avatar }}" alt="">
+                            </a>
+                            <div class="media-body p-1 ml-auto">
+                             <a href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
+                            </div>
+                            </div>
                         </div>
-                        </div>
+                        <div class="float-left d-flex flex-column align-items-center ml-3 mt-4">
+
+                             @if(Auth::user()->can('update-question',$answer))
+                                <a href="{{route('questions.answers.edit',[$question->id,$answer->id])}}" class="btn btn-sm mb-2  btn-outline-info">Update Answer</a>
+                            @endif
+                            
+                            @if(Auth::user()->can('delete-question',$answer))
+                            <form action="{{route('questions.answers.destroy',[$question->id,$answer->id])}}" method="POST">
+                                @csrf 
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm mb-2  btn-outline-danger">DELETE Answer</button>
+                            </form>
+                            @endif
+                            
                         </div>
                    
                     </div>

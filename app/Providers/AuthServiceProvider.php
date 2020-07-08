@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Answer;
+use App\Policies\AnswerPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
+        Answer::class => AnswerPolicy::class,
     ];
 
     /**
@@ -36,6 +39,8 @@ class AuthServiceProvider extends ServiceProvider
         \Gate::define('user-status',function($user,$question){
             return $user->id = $question->user_id;
         });
+
+       
 
     }
 }
